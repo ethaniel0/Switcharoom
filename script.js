@@ -251,40 +251,40 @@ const swapId = (target, newId) => {
 
 
 window.addEventListener("keydown", e => {
-    const { code } = e
+  const { code } = e
 
-    // jared controls
-    if(code == "Space") {
-        jared.vel.y = -5;
-        jared.jumping = true;
-    }
+  // jared controls
+  if(code == "Space") {
+    jared.vel.y = -5;
+    jared.jumping = true;
+  }
 
-    const screensClone = Object.assign({}, screens) // clone
-    switch(code) {
-        case "KeyW":
-          swapId("tr", "tl");
-          screens.tr = screens.tl;
-          screens.tl = screensClone.tr;
-          jared.swap('tr', 'tl');
-          break
-        case "KeyD":
-          swapId("tr", "br");
-          screens.tr = screens.br;
-          screens.br = screensClone.tr;
-          jared.swap('tr', 'br');
-          break
-        case "KeyS":
-          swapId("br", "bl");
-          screens.br = screens.bl;
-          screens.bl = screensClone.br;
-          jared.swap('br', 'bl');
-          break
-        case "KeyA":
-          swapId("tl", "bl")
-          screens.tl = screens.bl;
-          screens.bl = screensClone.tl;
-          jared.swap('tr', 'br');
-          break
+  const screensClone = Object.assign({}, screens) // clone
+  switch(code) {
+    case "KeyW":
+      swapId("tr", "tl");
+      screens.tr = screens.tl;
+      screens.tl = screensClone.tr;
+      jared.swap('tr', 'tl');
+      break
+    case "KeyD":
+      swapId("tr", "br");
+      screens.tr = screens.br;
+      screens.br = screensClone.tr;
+      jared.swap('tr', 'br');
+      break
+    case "KeyS":
+      swapId("br", "bl");
+      screens.br = screens.bl;
+      screens.bl = screensClone.br;
+      jared.swap('br', 'bl');
+      break
+    case "KeyA":
+      swapId("tl", "bl")
+      screens.tl = screens.bl;
+      screens.bl = screensClone.tl;
+      jared.swap('tr', 'br');
+      break
     }
 })
 
