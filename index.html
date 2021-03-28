@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Switcharoom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+    <style>
+
+      :root {
+        --run-animation: run;
+      }
+
+      @property --angle {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: true;
+      }
+
+      body {
+        background: conic-gradient(from var(--angle) at 50% 50%, red, yellow, lime, aqua, blue, magenta, red);
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        animation: 8s conic-gradient linear infinite;
+        font-family: "Roboto", sans-serif;
+      }
+
+      @keyframes conic-gradient {
+          from { --angle: 0deg }
+          to   { --angle: 360deg }
+      }
+
+      img {
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -webkit-crisp-edges;
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+        z-index: 100;
+      }
+      
+      img.main {
+        margin: none;
+        width: 40vw;
+        height: 40vw;
+        object-fit: contain;
+       
+      }
+
+      img.main:hover {
+        animation: 0.4s var(--run-animation) linear infinite;
+      }
+
+      h1 {
+        margin: 2rem 0 -1rem 0;
+        color: white;
+        font-size: 5rem;
+        text-shadow: 5px 0 0 #000, 0 -5px 0 #000, 0 5px 0 #000, -5px 0 0 #000;
+      }
+
+      @keyframes run {
+        0% {
+          content: url("/images/Jared still.png");
+        }
+        25% {
+          content: url("/images/Jared run 2.png");
+        }
+        50% {
+          content: url("/images/Jared run 3.png");
+        }
+        75% {
+          content: url("/images/Jared run 4.png");
+        }
+
+      }
+
+      @keyframes duckrun {
+        0% {
+          content: url("/images/Jared duck 1.png");
+        }
+        25% {
+          content: url("/images/Jared duck 2.png");
+        }
+        50% {
+          content: url("/images/Jared duck 3.png");
+        }
+        75% {
+          content: url("/images/Jared duck 4.png");
+        }
+
+      }
+
+      .hidden {
+        display: none;
+      }
+      
+      .rotating-jareds {
+        position: fixed;
+        top: 0;
+        animation: 1s rotate linear infinite;
+        transition: 10s top linear;
+        z-index: -1;
+        /* animation: 0.4s run linear infinite; */
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    
+    <h1>SWITCHAROOOOM</h1>
+    
+    <img class="main" src='/images/Jared still.png' />
+
+    <img class="hidden" src='/images/Jared run 2.png' />
+    <img class="hidden" src='/images/Jared run 3.png' />
+    <img class="hidden" src='/images/Jared run 4.png' />
+    <img class="hidden" src='/images/Jared duck 1.png' />
+    <img class="hidden" src='/images/Jared duck 2.png' />
+    <img class="hidden" src='/images/Jared duck 3.png' />
+    <img class="hidden" src='/images/Jared duck 4.png' />
+    <img class="hidden" src='/images/Jared jump.png' />
+    
+    
+    <script>
+      const random = (min, max) => Math.random() * (max - min) + min
+
+      setInterval(() => {
+        let jared = document.createElement('img')
+        Object.assign(jared, {
+          src: "/images/Jared still.png",
+          className: "rotating-jareds"
+        })
+        const width = random(1, 10)
+        const time = random(5, 25)
+        Object.assign(jared.style, {
+          width: width + "rem",
+          left: random(0, window.innerWidth) + "px",
+          animationTiming: time + "s"
+        })
+
+        document.body.appendChild(jared)
+
+        setTimeout(() => {
+          jared.style.top = `calc(100% + ${width}rem)`
+          jared.ontransitionend = () => {
+            jared.remove()
+          }
+        }, 100)
+      }, 500)
+
+
+      
+      window.addEventListener('keydown', e => {
+        if (e.keyCode == 40) {
+          document.getElementsByClassName('main')[0].style.content = 'url("/images/Jared duck 1.png")';
+          document.documentElement.style.setProperty('--run-animation', 'duckrun');
+        }
+
+        if (e.keyCode == 38) {
+          document.getElementsByClassName('main')[0].style.content = 'url("/images/Jared jump.png")'
+        }
+
+        if (e.keyCode == 37) {
+          document.getElementsByClassName('main')[0].style.transform = 'scaleX(-1)';
+        }
+        if (e.keyCode == 39) {
+          document.getElementsByClassName('main')[0].style.transform = 'scaleX(1)';
+        }
+
+      });
+
+      window.addEventListener('keyup', e => {
+        if (e.keyCode == 40 || e.keyCode == 38) {
+          document.getElementsByClassName('main')[0].style.content = 'url("/images/Jared still.png")';
+          document.documentElement.style.setProperty('--run-animation', 'run');
+        }
+      });
+      
+    </script>
+
+  </body>
+</html>

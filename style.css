@@ -1,0 +1,27 @@
+
+canvas {
+  position: absolute;
+  width: 44vw;
+  height: 24.75vw;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+#c1 {
+  right: 50%;
+  bottom: 50%;
+}
+#c2 {
+  left: 50%;
+  bottom: 50%;
+}
+#c3 {
+  right: 50%;
+  top: 50%;
+}
+#c4 {
+  left: 50%;
+  top: 50%;
+}

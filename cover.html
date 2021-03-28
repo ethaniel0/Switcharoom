@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Switcharoom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+    <style>
+      @property --angle {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: true;
+      }
+
+      body {
+        background: conic-gradient(from var(--angle) at 50% 50%, red, yellow, lime, aqua, blue, magenta, red);
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        animation: 8s conic-gradient linear infinite;
+        font-family: "Roboto", sans-serif;
+      }
+
+      @keyframes conic-gradient {
+          from { --angle: 0deg }
+          to   { --angle: 360deg }
+      }
+      
+      img {
+        width: 40vw;
+        height: 40vw;
+        object-fit: contain;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -webkit-crisp-edges;
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+      }
+
+      img:hover {
+        animation: 0.4s run linear infinite;
+      }
+
+      h1 {
+        color: white;
+        font-size: 5rem;
+        text-shadow: 5px 0 0 #000, 0 -5px 0 #000, 0 5px 0 #000, -5px 0 0 #000;
+      }
+
+      @keyframes run {
+        0% {
+          content: url("/images/Jared still.png");
+        }
+        25% {
+          content: url("/images/Jared run 2.png");
+        }
+        50% {
+          content: url("/images/Jared run 3.png");
+        }
+        75% {
+          content: url("/images/Jared run 4.png");
+        }
+      }
+
+      @keyframes duckrun {
+        0% {
+          content: url("/images/Jared duck 1.png");
+        }
+        25% {
+          content: url("/images/Jared duck 2.png");
+        }
+        50% {
+          content: url("/images/Jared duck 3.png");
+        }
+        75% {
+          content: url("/images/Jared duck 4.png");
+        }
+
+      }
+
+    </style>
+  </head>
+  <body>
+    
+    <h1>SWITCHAROOOOM</h1>
+    
+    <img src='/images/Jared still.png' />
+
+    <img style="display: none" src='/images/Jared run 2.png' />
+    <img style="display: none" src='/images/Jared run 3.png' />
+    <img style="display: none" src='/images/Jared run 4.png' />
+    <script>
+
+    </script>
+  </body>
+</html>
